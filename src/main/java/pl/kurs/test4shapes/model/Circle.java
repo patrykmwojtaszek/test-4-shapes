@@ -25,24 +25,14 @@ public class Circle extends Shape implements IShape{
         super.setWidth(2 * radius);
     }
 
-//    public Circle(CreateShapeCommand createShapeCommand) {
-//        super(createShapeCommand);
-////        super.setRadius(createShapeCommand.getParameters().get(0));
-//        this.radius = createShapeCommand.getParameters().get(0);
-//        super.setArea(calculateArea());
-//        super.setPerimeter(calculatePerimeter());
-//        super.setWidth(2 * radius);
-//    }
 
     @Override
     public double calculateArea() {
-//        return super.getRadius() * super.getRadius() * Math.PI;
         return Math.PI * radius * radius;
     }
 
     @Override
     public double calculatePerimeter() {
-//        return 2 * super.getRadius() * Math.PI;
         return 2 * Math.PI * radius;
     }
 }

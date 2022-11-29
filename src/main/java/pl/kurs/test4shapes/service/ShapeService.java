@@ -61,7 +61,6 @@ public class ShapeService implements IShapeService{
 
         if (areaFrom != null) {
             shapes = shapes.stream()
-//                    .filter(x -> x.getType() == ShapeType.SQUARE || x.getType() == ShapeType.RECTANGLE)
                     .filter(x -> x.getArea() >= areaFrom)
                     .collect(Collectors.toList());
         }
@@ -74,7 +73,6 @@ public class ShapeService implements IShapeService{
 
         if (perimeterFrom != null) {
             shapes = shapes.stream()
-//                    .filter(x -> x.getType() == ShapeType.SQUARE || x.getType() == ShapeType.RECTANGLE)
                     .filter(x -> x.getPerimeter() >= perimeterFrom)
                     .collect(Collectors.toList());
         }
@@ -87,7 +85,6 @@ public class ShapeService implements IShapeService{
 
         if (widthFrom != null) {
             shapes = shapes.stream()
-//                    .filter(x -> x.getType() == ShapeType.SQUARE || x.getType() == ShapeType.RECTANGLE)
                     .filter(x -> x.getWidth() >= widthFrom)
                     .collect(Collectors.toList());
         }
