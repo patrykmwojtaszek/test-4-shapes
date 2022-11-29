@@ -5,6 +5,7 @@ import pl.kurs.test4shapes.commands.CreateShapeCommand;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,14 +17,22 @@ public class Circle extends Shape implements IShape{
     public Circle() {
     }
 
-    public Circle(CreateShapeCommand createShapeCommand) {
-        super(createShapeCommand);
-//        super.setRadius(createShapeCommand.getParameters().get(0));
-        this.radius = createShapeCommand.getParameters().get(0);
+    public Circle(ShapeType type, List<Double> parameters) {
+        super(type, parameters);
+        this.radius = parameters.get(0);
         super.setArea(calculateArea());
         super.setPerimeter(calculatePerimeter());
         super.setWidth(2 * radius);
     }
+
+//    public Circle(CreateShapeCommand createShapeCommand) {
+//        super(createShapeCommand);
+////        super.setRadius(createShapeCommand.getParameters().get(0));
+//        this.radius = createShapeCommand.getParameters().get(0);
+//        super.setArea(calculateArea());
+//        super.setPerimeter(calculatePerimeter());
+//        super.setWidth(2 * radius);
+//    }
 
     @Override
     public double calculateArea() {

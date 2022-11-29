@@ -11,6 +11,7 @@ import pl.kurs.test4shapes.model.Square;
 import pl.kurs.test4shapes.repository.IShapeRepository;
 
 import javax.validation.constraints.Null;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,12 +29,11 @@ public class ShapeService implements IShapeService{
     @Override
     public Shape add(Shape shape) {
         if (Objects.isNull(shape)) throw new NoEntityException("No entity to add!");
-//        if (Objects.nonNull(entity.getId())) throw new WrongIdException("Id should be null");
         return shapeRepository.save(shape);
     }
 
     @Override
-    public List<Shape> getFilteredShapeList(Integer id,
+    public List<Shape> getFilteredShapeList(Long id,
                                             ShapeType type,
                                             Double areaFrom,
                                             Double areaTo,
@@ -42,12 +42,14 @@ public class ShapeService implements IShapeService{
                                             Double widthFrom,
                                             Double widthTo,
                                             Double radiusFrom,
-                                            Double radiusTo) {
+                                            Double radiusTo,
+                                            LocalDate localDateFrom,
+                                            LocalDate localDateTo) {
         List<Shape> shapes = shapeRepository.findAll();
 
         if (id != null) {
             shapes = shapes.stream()
-                    .filter(x -> x.getId() == id.longValue())
+                    .filter(x -> x.getId().equals(id))
                     .collect(Collectors.toList());
         }
 
@@ -111,6 +113,19 @@ public class ShapeService implements IShapeService{
                     .filter(x -> x.getRadius() <= radiusTo)
                     .collect(Collectors.toList());
         }
+
+        if (localDateFrom != null) {
+            shapes = shapes.stream()
+                    .filter(x -> x.getCreatedAt().isAfter(localDateFrom.atStartOfDay()))
+                    .collect(Collectors.toList());
+        }
+
+        if (localDateTo != null) {
+            shapes = shapes.stream()
+                    .filter(x -> x.getCreatedAt().isBefore(localDateTo.atStartOfDay()))
+                    .collect(Collectors.toList());
+        }
+
 
         return shapes;
     }

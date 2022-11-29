@@ -12,7 +12,7 @@
     <artifactId>test-4-shapes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>test-4-shapes</name>
-    <description>test-4-shapes</description>
+    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>14</java.version>
     </properties>
@@ -22,22 +22,27 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -54,6 +59,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
 
         <dependency>
@@ -106,17 +116,15 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-<!--                            <excludes>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/aspect/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/commands/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/config/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/dto/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/exceptionhandling/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/exceptions/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/model/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/validators/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/Test3AdvancedLevelApplication</exclude>-->
-<!--                            </excludes>-->
+                            <excludes>
+                                <exclude>**/*pl/kurs/test4shapes/commands/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/config/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/dto/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/exceptionhandling/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/exceptions/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/model/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/Test4ShapesApplication</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                     <execution>
@@ -125,17 +133,15 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-<!--                            <excludes>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/aspect/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/commands/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/config/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/dto/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/exceptionhandling/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/exceptions/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/model/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/validators/*</exclude>-->
-<!--                                <exclude>**/*pl/kurs/test3advancedlevel/Test3AdvancedLevelApplication</exclude>-->
-<!--                            </excludes>-->
+                            <excludes>
+                                <exclude>**/*pl/kurs/test4shapes/commands/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/config/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/dto/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/exceptionhandling/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/exceptions/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/model/*</exclude>
+                                <exclude>**/*pl/kurs/test4shapes/Test4ShapesApplication</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>PACKAGE</element>

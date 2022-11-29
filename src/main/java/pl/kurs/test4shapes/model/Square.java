@@ -5,6 +5,7 @@ import pl.kurs.test4shapes.commands.CreateShapeCommand;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,13 +17,20 @@ public class Square extends Shape implements IShape{
     public Square() {
     }
 
-    public Square(CreateShapeCommand createShapeCommand) {
-        super(createShapeCommand);
-//        super.setWidth(createShapeCommand.getParameters().get(0));
-        this.width = createShapeCommand.getParameters().get(0);
+    public Square(ShapeType type, List<Double> parameters) {
+        super(type, parameters);
+        this.width = parameters.get(0);
         super.setArea(calculateArea());
         super.setPerimeter(calculatePerimeter());
     }
+
+//    public Square(CreateShapeCommand createShapeCommand) {
+//        super(createShapeCommand);
+////        super.setWidth(createShapeCommand.getParameters().get(0));
+//        this.width = createShapeCommand.getParameters().get(0);
+//        super.setArea(calculateArea());
+//        super.setPerimeter(calculatePerimeter());
+//    }
 
 
     @Override
