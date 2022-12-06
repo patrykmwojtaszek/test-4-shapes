@@ -2,7 +2,6 @@ package pl.kurs.test4shapes.commands;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import pl.kurs.test4shapes.model.ShapeType;
 import pl.kurs.test4shapes.validators.InvalidType;
 
 import java.util.ArrayList;
@@ -13,10 +12,10 @@ public class CreateShapeCommand {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @InvalidType(message = "INVALID_TYPE")
-    private ShapeType type;
+    private String type;
     private List<Double> parameters = new ArrayList<>();
 
-    public CreateShapeCommand(ShapeType type, List<Double> parameters) {
+    public CreateShapeCommand(String type, List<Double> parameters) {
         this.type = type;
         this.parameters = parameters;
     }

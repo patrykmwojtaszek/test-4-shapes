@@ -12,13 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pl.kurs.test4shapes.Test4ShapesApplication;
 import pl.kurs.test4shapes.commands.CreateShapeCommand;
-import pl.kurs.test4shapes.model.Circle;
-import pl.kurs.test4shapes.model.Shape;
-import pl.kurs.test4shapes.model.ShapeType;
 import pl.kurs.test4shapes.model.Square;
 import pl.kurs.test4shapes.service.IShapeService;
 
@@ -29,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes= Test4ShapesApplication.class)
+@SpringBootTest(classes = Test4ShapesApplication.class)
 @AutoConfigureMockMvc
 class ShapeControllerTest {
 
@@ -52,13 +50,15 @@ class ShapeControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "creator", roles = {"CREATOR"})
     public void addShape_shouldAddShape() throws Exception {
         //given
-        Square shape = new Square(ShapeType.SQUARE, List.of(5.0));
-        String json = objectMapper.writeValueAsString(shape);
+        Square shape = new Square("SQUARE", List.of(5.0));
+        CreateShapeCommand createShapeCommand = new CreateShapeCommand("SQUARE", List.of(5.0));
+        String json = objectMapper.writeValueAsString(createShapeCommand);
 
         //when
-                postman.perform(post("/api/v1/shapes")
+        postman.perform(post("/api/v1/shapes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isCreated());
@@ -69,19 +69,22 @@ class ShapeControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        List<Square> responseObjList = objectMapper.readValue(response2, new TypeReference<List<Square>>(){});
+        List<Square> responseObjList = objectMapper.readValue(response2, new TypeReference<>() {
+        });
         Square responseObj = responseObjList.get(0);
 
         Assertions.assertEquals(shape, responseObj);
     }
 
     @Test
+    @WithMockUser(username = "creator", roles = {"CREATOR"})
     public void getFilteredShapes_shouldGetFilteredShapes() throws Exception {
         //given
-        Square shape1 = new Square(ShapeType.SQUARE, List.of(5.0));
-        Circle shape2 = new Circle(ShapeType.CIRCLE, List.of(2.0));
-        String json1 = objectMapper.writeValueAsString(shape1);
-        String json2 = objectMapper.writeValueAsString(shape2);
+        Square shape = new Square("SQUARE", List.of(5.0));
+        CreateShapeCommand createShapeCommand1 = new CreateShapeCommand("CIRCLE", List.of(2.0));
+        CreateShapeCommand createShapeCommand2 = new CreateShapeCommand("SQUARE", List.of(5.0));
+        String json1 = objectMapper.writeValueAsString(createShapeCommand1);
+        String json2 = objectMapper.writeValueAsString(createShapeCommand2);
 
         //when
         postman.perform(post("/api/v1/shapes")
@@ -100,9 +103,11 @@ class ShapeControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        List<Circle> responseObjList = objectMapper.readValue(response, new TypeReference<List<Circle>>(){});
-        Circle responseObj = responseObjList.get(0);
+        List<Square> responseObjList = objectMapper.readValue(response, new TypeReference<>() {
+        });
+        Square responseObj = responseObjList.get(0);
 
-        Assertions.assertEquals(shape2, responseObj);
+
+        Assertions.assertEquals(shape, responseObj);
     }
 }

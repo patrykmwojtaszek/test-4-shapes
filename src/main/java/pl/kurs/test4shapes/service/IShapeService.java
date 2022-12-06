@@ -1,27 +1,22 @@
 package pl.kurs.test4shapes.service;
-
+import pl.kurs.test4shapes.commands.CreateShapeCommand;
 import pl.kurs.test4shapes.model.Shape;
-import pl.kurs.test4shapes.model.ShapeType;
-
 import java.time.LocalDate;
 import java.util.List;
 
 public interface IShapeService {
 
-    Shape add(Shape shape);
+    Shape add(CreateShapeCommand createShapeCommand);
 
-//    List<Shape> getFilteredShapes(ShapeFilterModel filterModel);
     List<Shape> getFilteredShapeList(Long id,
-                                     ShapeType type,
+                                     String type,
                                      Double areaFrom,
                                      Double areaTo,
                                      Double perimeterFrom,
                                      Double perimeterTo,
                                      Double widthFrom,
                                      Double widthTo,
-                                     Double radiusFrom,
-                                     Double radiusTo,
-                                     LocalDate localDateFrom,
-                                     LocalDate localDateTo);
+                                     LocalDate createdAtFrom,
+                                     LocalDate createdAtTo);
 
 }

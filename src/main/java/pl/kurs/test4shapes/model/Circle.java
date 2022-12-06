@@ -17,7 +17,7 @@ public class Circle extends Shape implements IShape{
     public Circle() {
     }
 
-    public Circle(ShapeType type, List<Double> parameters) {
+    public Circle(String type, List<Double> parameters) {
         super(type, parameters);
         this.radius = parameters.get(0);
         super.setArea(calculateArea());

@@ -7,11 +7,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.kurs.test4shapes.commands.CreateShapeCommand;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Data
@@ -27,9 +29,9 @@ public abstract class Shape implements Serializable{
     @Column(name = "id_shape")
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ShapeType type;
+    private String type;
 
     @ElementCollection
 //    @Column(name = "parameters", nullable = false)
@@ -46,11 +48,13 @@ public abstract class Shape implements Serializable{
     @CreatedBy
     private String createdBy;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING)
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
     private LocalDateTime lastModifiedAt;
 
@@ -67,7 +71,7 @@ public abstract class Shape implements Serializable{
     public Shape() {
     }
 
-    public Shape(ShapeType type, List<Double> parameters) {
+    public Shape(String type, List<Double> parameters) {
         this.type = type;
         this.parameters = parameters;
         this.version = ++version;

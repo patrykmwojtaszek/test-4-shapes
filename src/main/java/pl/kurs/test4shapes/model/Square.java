@@ -17,7 +17,7 @@ public class Square extends Shape implements IShape{
     public Square() {
     }
 
-    public Square(ShapeType type, List<Double> parameters) {
+    public Square(String type, List<Double> parameters) {
         super(type, parameters);
         this.width = parameters.get(0);
         super.setArea(calculateArea());

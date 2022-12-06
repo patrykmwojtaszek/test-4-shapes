@@ -18,7 +18,7 @@ public class Rectangle extends Shape implements IShape{
     public Rectangle() {
     }
 
-    public Rectangle(ShapeType type, List<Double> parameters) {
+    public Rectangle(String type, List<Double> parameters) {
         super(type, parameters);
         this.height = parameters.get(0);
         this.width = parameters.get(1);
