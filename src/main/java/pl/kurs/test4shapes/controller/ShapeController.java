@@ -7,9 +7,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kurs.test4shapes.commands.CreateShapeCommand;
+import pl.kurs.test4shapes.commands.UpdateShapeCommand;
 import pl.kurs.test4shapes.dto.ShapeDto;
 import pl.kurs.test4shapes.model.*;
 import pl.kurs.test4shapes.service.IShapeService;
+
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,10 +31,19 @@ public class ShapeController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<ShapeDto> addShape(@Valid @RequestBody CreateShapeCommand createShapeCommand) throws InterruptedException, ClassNotFoundException {
         ShapeDto shapeDto = modelMapper.map(shapeService.add(createShapeCommand), ShapeDto.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(shapeDto);
     }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<ShapeDto> editShape(@RequestBody UpdateShapeCommand updateShapeCommand) {
+        ShapeDto shapeDto = modelMapper.map(shapeService.update(updateShapeCommand), ShapeDto.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(shapeDto);
+    }
+
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<ShapeDto>> getFilteredShapes(@RequestParam(required = false) Long id,

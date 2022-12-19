@@ -48,7 +48,7 @@ class ShapeServiceTest {
         CreateShapeCommand createShapeCommand = new CreateShapeCommand("SQUARE", List.of(5.0));
         //when
         Mockito.when(shapeFactory.create(Mockito.any(CreateShapeCommand.class))).thenReturn(shape);
-        Mockito.when(shapeRepository.saveAndFlush(Mockito.any(Shape.class))).thenReturn(shape);
+        Mockito.when(shapeRepository.save(Mockito.any(Shape.class))).thenReturn(shape);
         Shape shapeResult = shapeService.add(createShapeCommand);
         //then
         Assertions.assertEquals(shape, shapeResult);

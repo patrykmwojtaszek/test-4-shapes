@@ -25,7 +25,7 @@ public abstract class Shape implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_shape")
     private Long id;
 
@@ -41,8 +41,8 @@ public abstract class Shape implements Serializable{
     private double width;
 
     @Column(nullable = false)
-//    @Version
-    private int version = 0;
+    @Version
+    private int version;
 
     @Column(nullable = false)
     @CreatedBy
@@ -74,9 +74,12 @@ public abstract class Shape implements Serializable{
     public Shape(String type, List<Double> parameters) {
         this.type = type;
         this.parameters = parameters;
-        this.version = ++version;
+//        this.version = ++version;
         this.createdAt = LocalDateTime.now();
         this.lastModifiedAt = LocalDateTime.now();
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
