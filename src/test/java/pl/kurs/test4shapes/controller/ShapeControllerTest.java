@@ -19,12 +19,10 @@ import pl.kurs.test4shapes.Test4ShapesApplication;
 import pl.kurs.test4shapes.commands.CreateShapeCommand;
 import pl.kurs.test4shapes.commands.UpdateShapeCommand;
 import pl.kurs.test4shapes.model.Square;
-import pl.kurs.test4shapes.service.IShapeService;
+import pl.kurs.test4shapes.service.ShapeService;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,20 +33,21 @@ class ShapeControllerTest {
 
     @Autowired
     private MockMvc postman;
+
     @Autowired
     private ObjectMapper objectMapper;
-    @Mock
-    private CreateShapeCommand createShapeCommand;
-    @Mock
-    private IShapeService shapeService;
-    @Mock
-    private ModelMapper modelMapper;
-    private ShapeController shapeController;
+//    @Mock
+//    private CreateShapeCommand createShapeCommand;
+//    @MockBean
+//    private ShapeService shapeService;
+//    @Mock
+//    private ModelMapper modelMapper;
+//    private ShapeController shapeController;
 
     @BeforeEach
     public void init() {
-        MockitoAnnotations.openMocks(this);
-        this.shapeController = new ShapeController(shapeService, modelMapper);
+//        MockitoAnnotations.openMocks(this);
+//        this.shapeController = new ShapeController(shapeService, modelMapper);
     }
 
     @Test

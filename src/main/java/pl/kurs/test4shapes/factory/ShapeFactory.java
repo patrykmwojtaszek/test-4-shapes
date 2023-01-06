@@ -12,7 +12,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-@Getter
 public class ShapeFactory {
 
     private final Map<String, IShapeCreator> creators;

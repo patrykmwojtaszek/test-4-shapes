@@ -30,7 +30,6 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
         ExceptionResponseBody responseBody = new ExceptionResponseBody(messages, "BAD_REQUEST", LocalDateTime.now());
         return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
-
     }
 
 
